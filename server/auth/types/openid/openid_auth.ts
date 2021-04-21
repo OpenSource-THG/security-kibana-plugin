@@ -81,18 +81,10 @@ export class OpenIdAuthentication extends AuthenticationType {
     }
     this.openIdAuthConfig.scope = scope;
 
-    this.init();
-  }
-
-  private async init() {
     try {
-      const response = await this.wreckClient.get(this.openIdConnectUrl);
-      const payload = JSON.parse(response.payload as string);
-
-      this.openIdAuthConfig.authorizationEndpoint = payload.authorization_endpoint;
-      this.openIdAuthConfig.tokenEndpoint = payload.token_endpoint;
-      this.openIdAuthConfig.endSessionEndpoint = payload.end_session_endpoint || undefined;
-
+      this.openIdAuthConfig.authorizationEndpoint = this.config.openid.authorization_endpoint;
+      this.openIdAuthConfig.tokenEndpoint = this.config.openid.token_endpoint;
+      this.openIdAuthConfig.endSessionEndpoint = this.config.openid.end_session_endpoint;
       const routes = new OpenIdAuthRoutes(
         this.router,
         this.config,

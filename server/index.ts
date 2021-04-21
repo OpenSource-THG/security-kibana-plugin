@@ -133,6 +133,9 @@ export const configSchema = schema.object({
       base_redirect_url: schema.string({ defaultValue: '' }),
       logout_url: schema.string({ defaultValue: '' }),
       root_ca: schema.string({ defaultValue: '' }),
+      authorization_endpoint: schema.string({ defaultValue: '' }),
+      token_endpoint: schema.string({ defaultValue: '' }),
+      end_session_endpoint: schema.string({ defaultValue: '' }),
       verify_hostnames: schema.boolean({ defaultValue: true }),
       refresh_tokens: schema.boolean({ defaultValue: true }),
     })
