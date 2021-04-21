@@ -62,3 +62,8 @@ jobs:
           artifact_name=`basename $artifact_path`
           echo "::set-output name=ARTIFACT_PATH::$artifact_path"
           echo "::set-output name=ARTIFACT_NAME::$artifact_name"
+      - name: Upload artifact 
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.build_zip.outputs.ARTIFACT_PATH }}
+          path: opendistroSecurityKibana-${{ steps.plugin_version.outputs.plugin_version }}.zip
