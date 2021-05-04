@@ -82,6 +82,11 @@ export class OpenIdAuthRoutes {
 
         // Sign-in initialization
         if (!request.query.code) {
+          if (request.query.error) {
+            return response.badRequest({
+              body: request.query.error_description,
+            });
+          }
           const nonce = randomString(OpenIdAuthRoutes.NONCE_LENGTH);
           const query: any = {
             client_id: this.config.openid?.client_id,
